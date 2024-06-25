@@ -4,12 +4,8 @@ def main():
 	char_count = char_counter(text)
 	word_count = word_counter(text)
 	dictionary_list = dict_list_creator(char_count) 
-	#print(f"Amount of words in book: {word_count}")
-	#print(f"Character count in book: {char_count}")
 	sorter(dictionary_list)
-	print(dictionary_list)
-
-
+	report(dictionary_list, book_path, word_count)
 
 def reader(path):
 	with open(path) as f:
@@ -44,5 +40,14 @@ def sorting_key(dict):
 def sorter(list):
 	list.sort(reverse=True, key=sorting_key)
 
+def report(list, path, count):
+	print(f"--- Begin Report of {path} ---")
+	print()
+	print(f"There are {count} words in this book.")
+	print()
+	for char in list:
+		print(f"The character '{char['name']}' was found '{char['num']}' times.")
+	print()
+	print("--- End Report ---")
 
 main()
