@@ -3,9 +3,11 @@ def main():
 	text = reader(book_path)
 	char_count = char_counter(text)
 	word_count = word_counter(text)
-	print(f"Amount of words in book: {word_count}")
-	print(f"Character count in book: {char_count}")
-
+	dictionary_list = dict_list_creator(char_count) 
+	#print(f"Amount of words in book: {word_count}")
+	#print(f"Character count in book: {char_count}")
+	sorter(dictionary_list)
+	print(dictionary_list)
 
 
 
@@ -27,6 +29,20 @@ def char_counter(string):
 			char_dict[char] = 1
 	return char_dict
 
-	
+def dict_list_creator(dictionary):
+	dict_list = []
+	for char in dictionary:
+		if char.isalpha() == True:
+			dict_list.append({"name" : char, "num" : dictionary[char]})
+		else:
+			pass
+	return dict_list
+
+def sorting_key(dict):
+	return dict["num"]
+
+def sorter(list):
+	list.sort(reverse=True, key=sorting_key)
+
 
 main()
